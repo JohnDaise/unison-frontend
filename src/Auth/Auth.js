@@ -2,21 +2,25 @@ import auth0 from 'auth0-js';
 import history from '../history';
 
 export default class Auth {
+  auth0 = new auth0.WebAuth({
+    domain: 'unison-project.auth0.com',
+    clientID: 'MJ6RFad5PTA0_FE5G4qSE6rVYyceCbw2',
+    redirectUri: 'http://localhost:3000/callback',
+    responseType: 'token id_token',
+    scope: 'openid'
+  });
+
+  userProfile;
 
   constructor() {
    this.login = this.login.bind(this);
    this.logout = this.logout.bind(this);
    this.handleAuthentication = this.handleAuthentication.bind(this);
    this.isAuthenticated = this.isAuthenticated.bind(this);
+   this.getAccessToken = this.getAccessToken.bind(this);
+   this.getProfile = this.getProfile.bind(this);
  }
 
- auth0 = new auth0.WebAuth({
-   domain: 'unison-project.auth0.com',
-   clientID: 'MJ6RFad5PTA0_FE5G4qSE6rVYyceCbw2',
-   redirectUri: 'http://localhost:3000/callback',
-   responseType: 'token id_token',
-   scope: 'openid'
- });
 
  login() {
    this.auth0.authorize();
@@ -35,7 +39,6 @@ export default class Auth {
      });
    }
 
-
    setSession(authResult) {
      // Set the time that the Access Token will expire at
      let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
@@ -45,6 +48,28 @@ export default class Auth {
      // navigate to the home route
      history.replace('/home');
    };
+
+
+
+ getAccessToken() {
+     const accessToken = localStorage.getItem('access_token');
+     if (!accessToken) {
+       throw new Error('No Access Token found');
+     }
+     return accessToken;
+   }
+
+
+
+   getProfile(cb) {
+     let accessToken = this.getAccessToken();
+     this.auth0.client.userInfo(accessToken, (err, profile) => {
+       if (profile) {
+         this.userProfile = profile;
+       }
+       cb(err, profile);
+     });
+   }
 
 
 

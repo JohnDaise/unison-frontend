@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Profile from '../Profile/Profile'
 
 class Home extends Component {
   login() {
@@ -7,29 +8,29 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
-      <div className="container">
-        {
-          isAuthenticated() && (
-              <h1>
-                Welcome Home!
-              </h1>
-            )
+      <React.Fragment>
+        {isAuthenticated() ?
+          <div className="container">
+            {
+              <h1> Welcome Home! </h1>
+            }
+          </div>
+          :
+          <div className="container">
+                  <h1>
+                    You are not logged in! Please{' '}
+                    <a href='#'
+                      style={{ cursor: 'pointer' }}
+                      onClick={this.login.bind(this)}
+                    >
+                      Log In
+                    </a>
+                    {' '}to continue.
+                  </h1>
+                )
+          </div>
         }
-        {
-          !isAuthenticated() && (
-              <h1>
-                You are not logged in! Please{' '}
-                <a href='#'
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                </a>
-                {' '}to continue.
-              </h1>
-            )
-        }
-      </div>
+      </React.Fragment>
     );
   }
 }
