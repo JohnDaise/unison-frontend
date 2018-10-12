@@ -47,7 +47,7 @@ goTo(route) {
         <Button inverted onClick={this.goTo.bind(this, 'home')}> Home </Button>
           {
             !isAuthenticated() && (
-            <Button content="Log In" secondary onClick={this.login.bind(this)}/>
+            <Button inverted onClick={this.login.bind(this)}> Log In </Button>
               )
           }
           {
