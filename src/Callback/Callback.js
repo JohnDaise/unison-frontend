@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import loading from './loading.svg';
-import Home from '../Home/home';
+// import Home from '../Home/home';
 
 class Callback extends Component {
   render() {

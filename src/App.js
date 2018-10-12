@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import Login from './components/login'
-import { Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
 
 // import logo from './logo.svg';
 import './App.css';
-import Auth from './Auth/Auth.js';
+// import Auth from './Auth/Auth.js';
 
 
 
@@ -43,15 +43,16 @@ goTo(route) {
 
     return (
       <div className="App-header">
-        <Button content="Home" onClick={this.goTo.bind(this, 'home')} />
+        <h1> Unison </h1>
+        <Button inverted onClick={this.goTo.bind(this, 'home')}> Home </Button>
           {
             !isAuthenticated() && (
-            <Button content="Log In" onClick={this.login.bind(this)}/>
+            <Button content="Log In" secondary onClick={this.login.bind(this)}/>
               )
           }
           {
             isAuthenticated() && (
-            <Button content="Log Out" onClick={this.logout.bind(this)}/>
+            <Button inverted onClick={this.logout.bind(this)}> Log Out </Button>
               )
           }
       </div>
