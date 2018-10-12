@@ -19,6 +19,8 @@ class Profile extends Component {
     const { profile } = this.state;
     return (
       <React.Fragment>
+        <h1> {profile.name} </h1>
+        <img src={profile.picture} alt={profile.name} /> <br/>
         <Button> Update Profile </Button>
       </React.Fragment>
     );
