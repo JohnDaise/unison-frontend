@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 // import { BrowserRouter } from "react-router-dom";
 import { makeMainRoutes } from './routes';
 import 'semantic-ui-css/semantic.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 // import { Provider } from "react-redux";
 
 import './index.css';

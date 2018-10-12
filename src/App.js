@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-// import Login from './components/login'
 import { Button } from 'semantic-ui-react';
-
-// import logo from './logo.svg';
 import './App.css';
-// import Auth from './Auth/Auth.js';
-
-
 
 class App extends Component {
 
@@ -33,8 +27,6 @@ goTo(route) {
     logout() {
       this.props.auth.logout();
     }
-
-
 
 
 
